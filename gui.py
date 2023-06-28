@@ -1,5 +1,6 @@
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton
+from PyQt5.QtWidgets import * 
+from PyQt5 import QtCore
+from PyQt5.QtGui import * 
 
 import sys
 
@@ -8,12 +9,17 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("My App")
-        self.setGeometry(500, 500, 500, 300)
+        self.setGeometry(500, 500, 300, 200)
+        self.setStyleSheet('background-color: black;')
 
-        start_button = QPushButton("Start recording", self)
-        start_button.setGeometry(200,0,100,50)
-        stop_button = QPushButton("Stop recording", self)
-        stop_button.setGeometry(200,150,100,50)
+        start_button = QPushButton("start recording", self)
+        start_button.setGeometry(100,25,100,50)
+        start_button.setStyleSheet('background-color: white;')
+        start_button.setFont(QFont('Arial', 10))
+        stop_button = QPushButton("stop recording", self)
+        stop_button.setGeometry(100,125,100,50)
+        stop_button.setStyleSheet('background-color: white;')
+        stop_button.setFont(QFont('Arial', 10))
 
         start_button.clicked.connect(self.start_func)
         stop_button.clicked.connect(self.end_func)
