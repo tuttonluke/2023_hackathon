@@ -3,6 +3,7 @@ import os
 import json
 import winsound
 import time
+import string
 #%%
 LETTERS_TO_MC = {
     'A': '.-', 'B': '-...', 'C': '-.-.',
@@ -37,8 +38,9 @@ def read_json_file(path):
         return text_dict["text"]
 
 def translate(text):
-    return " ".join(LETTERS_TO_MC[char] for char in text.upper())
-
+    remove_punctuation = text.translate(str.maketrans('', '', string.punctuation))
+    return " ".join(LETTERS_TO_MC[char] for char in remove_punctuation.upper())
+ 
 def morse_beep(morse_string):
     for char in morse_string:
         if char == ".":
@@ -53,17 +55,9 @@ def morse_beep(morse_string):
 if __name__ == "__main__":
     for file in get_list_of_json_files():
         text = read_json_file(f"{json_files_folder}/{file}")
-        morse_text = translate(text)
-        print(morse_text)
-        
-        for char in morse_text:
-            print(char)
-        # morse_beep(morse_text)
+        morse_beep(translate(text))
 
 
-    
 
-
-# strip punctuation
 
         
