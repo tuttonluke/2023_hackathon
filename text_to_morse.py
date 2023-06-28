@@ -28,23 +28,13 @@ def read_json_file(path):
 
 def translate(text):
     return " ".join(LETTERS_TO_MC[char] for char in text.upper())
-
-
-
+#%%
 if __name__ == "__main__":
     for file in get_list_of_json_files():
         text = read_json_file(f"json_files/{file}")
-        print(translate(text))
-#%%
-if __name__ == "__main__":
-    print(get_list_of_json_files())
+        print(f"\nMorse: {translate(text)}")
 
 
-# if __name__ == "__main__":
-#     for root, dirs, files in os.walk("json_files"):
-#         for file in files:
-#             path = os.path.abspath("example_text.json")
-#             json_data = json.loads(open(path).read())
 
     
 
