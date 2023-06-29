@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import * 
 from PyQt5 import QtCore
 from PyQt5.QtGui import * 
+import speech_to_text
 
 import sys
 
@@ -32,16 +33,19 @@ class MainWindow(QMainWindow):
         stop_button.setStyleSheet('background-color: white;')
         stop_button.setFont(QFont('Arial', text_font_size))
 
+        self.streamer = speech_to_text.Streamer()
+
         start_button.clicked.connect(self.start_func)
         stop_button.clicked.connect(self.end_func)
 
 
 
     def start_func(self):
-        print("hello world :)")
-
+        self.streamer.start_recording()
+        
     def end_func(self):
-        print("goodbye world :(")
+        self.streamer.stop_recording()
+        self.streamer.play_audio()
 
 
 if __name__ == '__main__':

@@ -43,10 +43,13 @@ def translate(text):
  
 def morse_beep(morse_string):
     for char in morse_string:
+        print(char)
         if char == ".":
             winsound.Beep(beep_frequency, dot_beep_duration)
+            time.sleep(0.1)
         elif char == "-":    
             winsound.Beep(beep_frequency, dash_beep_duration)
+            time.sleep(0.1)
         elif char == "/":
             time.sleep(0.7)
         else:
