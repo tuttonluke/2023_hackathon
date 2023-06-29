@@ -1,7 +1,7 @@
 #%%
 import os
 import json
-from pygame import mixer
+import winsound
 import time
 import string
 #%%
@@ -24,18 +24,12 @@ LETTERS_TO_MC = {
 json_files_folder = "json_files"
 
 beep_frequency = 440 # Hz
-
-unit = 100
-dot = 1
-dash = 3
+unit = 200
 dot_beep_duration = 1*unit # miliseconds
 dash_beep_duration = 3*unit # miliseconds
 intra_char_gap = 1*unit
 inter_char_gap = 3*unit
 inter_word_gap = 7*unit # miliseconds
-
-mixer.init()
-beep = mixer.Sound('beep.wav')
 
 def get_list_of_json_files():
     for root, dirs, files in os.walk(json_files_folder):
@@ -54,11 +48,11 @@ def morse_beep(morse_string):
     for char in morse_string:
         print(char)
         if char == ".":
-            beep.play(dot)
-            time.sleep((dot_beep_duration + intra_char_gap) / 1000)
+            winsound.Beep(beep_frequency, dot_beep_duration)
+            time.sleep(intra_char_gap / 1000)
         elif char == "-":    
-            beep.play(dash)
-            time.sleep((dash_beep_duration + intra_char_gap) / 1000)
+            winsound.Beep(beep_frequency, dash_beep_duration)
+            time.sleep(intra_char_gap / 1000)
         elif char == "/":
             time.sleep((inter_word_gap - (2*inter_char_gap)) / 1000)
         elif char == ' ':
